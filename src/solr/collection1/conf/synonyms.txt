@@ -1,0 +1,7 @@
+## states of america,soa
+## united states,us
+united states of america,united states of america
+## emirate united states of america,emusa
+## phone number,phone number
+out of warranty,oow
+multimedia messaging service,multimedia text message,MMS

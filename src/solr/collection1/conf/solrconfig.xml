@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xi="http://www.w3.org/2001/XInclude">
+	<luceneMatchVersion>7.1.0</luceneMatchVersion>
+    <!--<lib dir="/Users/agazzarini/.m2/repository/com/spaziocodice/labs/solr-analyzers-exp/1.0-SNAPSHOT" regex=".*\.jar" />-->
+    <dataDir>${solr.data.dir:/var/data/solr/}/${solr.core.name}/data</dataDir>
+	<directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}" />
+	<codecFactory class="solr.SchemaCodecFactory" /> 
+	<schemaFactory class="ClassicIndexSchemaFactory" />
+	<indexConfig>
+		<lockType>${solr.lock.type:native}</lockType>
+	</indexConfig>
+	<jmx />
+	<updateHandler class="solr.DirectUpdateHandler2"/>		
+	<query>
+		<maxBooleanClauses>1024</maxBooleanClauses>
+		<filterCache class="solr.FastLRUCache" size="512" initialSize="512" autowarmCount="0" />
+		<queryResultCache class="solr.LRUCache" size="512" initialSize="512" autowarmCount="0" />
+		<documentCache class="solr.LRUCache" size="512" initialSize="512" autowarmCount="0" />
+		<enableLazyFieldLoading>true</enableLazyFieldLoading>
+		<queryResultWindowSize>20</queryResultWindowSize>
+		<queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+		<useColdSearcher>false</useColdSearcher>
+		<maxWarmingSearchers>2</maxWarmingSearchers>
+	</query>  	
+	<requestDispatcher handleSelect="true">
+		<requestParsers 
+			enableRemoteStreaming="true" 
+			multipartUploadLimitInKB="2048000" 
+			formdataUploadLimitInKB="2048" />
+		<httpCaching never304="true" />
+	</requestDispatcher>
+	<requestHandler name="/def" class="solr.SearchHandler" default="true">
+        <lst name="defaults">
+            <bool name="sow">false</bool>
+            <str name="df">title</str>
+            <str name="defType">lucene</str>
+            <str name="qf">
+                title
+                author
+            </str>
+            <bool name="debug">true</bool>
+        </lst>
+    </requestHandler>
+  	
+	<admin>
+		<defaultQuery>Gx</defaultQuery>
+	</admin>
+</config>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="simple sample minimalistic schema" version="1.5">
+    <!-- 
+    	The schema in this example is kept simple, as much as possible.
+     -->
+    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="title" type="text" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="author" type="names" indexed="true" stored="true" required="false" multiValued="false"/>
+
+    <uniqueKey>id</uniqueKey>
+
+    <fieldtype name="names" class="solr.TextField">
+        <analyzer type="index">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+        </analyzer>
+    </fieldtype>
+	<fieldtype name="text" class="solr.TextField" autoGeneratePhraseQueries="true">
+        <analyzer type="index">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="false" expand="true"/>
+        </analyzer>
+	</fieldtype>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+</schema>

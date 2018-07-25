@@ -1,0 +1,51 @@
+4.544185 = sum of:
+  4.544185 = weight(title:"united states of america" in 1) [SchemaSimilarity], result of:
+    4.544185 = score(doc=1,freq=1.0 = phraseFreq=1.0
+), product of:
+      2.0 = boost
+      2.7725887 = idf(), sum of:
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+      0.8194842 = tfNorm, computed as (freq * (k1 + 1)) / (freq + k1 * (1 - b + b * fieldLength / avgFieldLength)) from:
+        1.0 = phraseFreq=1.0
+        1.2 = parameter k1
+        0.75 = parameter b
+        6.5 = avgFieldLength
+        10.0 = fieldLength
+
+
+2.2720926 = sum of:
+  2.2720926 = weight(title:"united states of america" in 1) [SchemaSimilarity], result of:
+    2.2720926 = score(doc=1,freq=1.0 = phraseFreq=1.0
+), product of:
+      2.7725887 = idf(), sum of:
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+        0.6931472 = idf, computed as log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5)) from:
+          1.0 = docFreq
+          2.0 = docCount
+      0.8194842 = tfNorm, computed as (freq * (k1 + 1)) / (freq + k1 * (1 - b + b * fieldLength / avgFieldLength)) from:
+        1.0 = phraseFreq=1.0
+        1.2 = parameter k1
+        0.75 = parameter b
+        6.5 = avgFieldLength
+        10.0 = fieldLength
+},QParser=LuceneQParser,timing={time=43.0,prepare={time=18.0,query={time=17.0},facet={time=0.0},facet_module={time=0.0},mlt={time=0.0},highlight={time=0.0},stats={time=0.0},expand={time=0.0},terms={time=0.0},debug={time=0.0}},process={time=24.0,query={time=18.0},facet={time=0.0},facet_module={time=0.0},mlt={time=0.0},highlight={time=0.0},stats={time=0.0},expand={time=0.0},terms={time=0.0},debug={time=5.0}}}}}
+(title:i'm title:a) PhraseQuery(title:"united states of america") title:citizen
