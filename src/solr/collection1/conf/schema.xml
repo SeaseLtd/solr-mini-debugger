@@ -4,8 +4,9 @@
     	The schema in this example is kept simple, as much as possible.
      -->
     <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="title" type="text" indexed="true" stored="true" required="true" multiValued="false"/>
+	<field name="title" type="text" indexed="true" stored="true" required="false" multiValued="false"/>
     <field name="author" type="names" indexed="true" stored="true" required="false" multiValued="false"/>
+    <field name="body" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
 
     <uniqueKey>id</uniqueKey>
 
@@ -19,12 +20,34 @@
         <analyzer type="index">
             <tokenizer class="solr.StandardTokenizerFactory"/>
             <filter class="solr.LowerCaseFilterFactory"/>
+            <filter class="sc.SynonymAwareStopFilterFactory" words="stopwords.txt"/>
         </analyzer>
         <analyzer type="query">
             <tokenizer class="solr.StandardTokenizerFactory"/>
             <filter class="solr.LowerCaseFilterFactory"/>
             <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="false" expand="true"/>
+            <filter class="sc.SynonymAwareStopFilterFactory" words="stopwords.txt"/>
+            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="false" expand="true"/>
         </analyzer>
 	</fieldtype>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+
+    <fieldType name="text_en"  class="solr.TextField"  positionIncrementGap="100">
+        <analyzer type="index">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+            <filter class="solr.EnglishPossessiveFilterFactory"/>
+            <filter class="solr.KeywordMarkerFilterFactory"  protected="protwords.txt"/>
+            <filter class="solr.PorterStemFilterFactory"/>
+        </analyzer>
+        <analyzer type="query">
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+            <filter class="solr.SynonymGraphFilterFactory"  synonyms="synonyms.txt"
+                    ignoreCase="true"  expand="true" tokenizerFactory="solr.StandardTokenizerFactory"/>
+            <filter class="solr.EnglishPossessiveFilterFactory"/>
+            <filter class="solr.KeywordMarkerFilterFactory"  protected="protwords.txt"/>
+            <filter class="solr.PorterStemFilterFactory"/>
+        </analyzer>
+    </fieldType>
 </schema>

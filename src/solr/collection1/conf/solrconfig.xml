@@ -29,14 +29,20 @@
 			formdataUploadLimitInKB="2048" />
 		<httpCaching never304="true" />
 	</requestDispatcher>
-	<requestHandler name="/def" class="solr.SearchHandler" default="true">
+    <requestHandler name="/t1" class="solr.SearchHandler" default="true">
+        <str name="defType">lucene</str>
+    </requestHandler>
+
+	<requestHandler name="/def" class="solr.SearchHandler">
         <lst name="defaults">
             <bool name="sow">false</bool>
             <str name="df">title</str>
             <str name="defType">lucene</str>
             <str name="qf">
                 title
-                author
+            </str>
+            <str name="pf">
+                title^2
             </str>
             <bool name="debug">true</bool>
         </lst>
