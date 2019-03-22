@@ -1,53 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema name="simple sample minimalistic schema" version="1.5">
-    <!-- 
-    	The schema in this example is kept simple, as much as possible.
-     -->
+
     <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-	<field name="title" type="text" indexed="true" stored="true" required="false" multiValued="false"/>
-    <field name="author" type="names" indexed="true" stored="true" required="false" multiValued="false"/>
-    <field name="body" type="text_en" indexed="true" stored="true" required="false" multiValued="false"/>
+    <field name="title" type="heading_en" indexed="true" stored="true" required="true" multiValued="false"/>
+    <field name="author" type="name" indexed="true" stored="true" required="true" multiValued="true"/>
+    <field name="isbn" type="code" indexed="true" stored="true" required="true" multiValued="false"/>
 
-    <uniqueKey>id</uniqueKey>
-
-    <fieldtype name="names" class="solr.TextField">
-        <analyzer type="index">
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-        </analyzer>
-    </fieldtype>
-	<fieldtype name="text" class="solr.TextField" autoGeneratePhraseQueries="true">
-        <analyzer type="index">
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="sc.SynonymAwareStopFilterFactory" words="stopwords.txt"/>
-        </analyzer>
-        <analyzer type="query">
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="false" expand="true"/>
-            <filter class="sc.SynonymAwareStopFilterFactory" words="stopwords.txt"/>
-            <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="false" expand="true"/>
-        </analyzer>
-	</fieldtype>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
 
-    <fieldType name="text_en"  class="solr.TextField"  positionIncrementGap="100">
-        <analyzer type="index">
-            <tokenizer class="solr.StandardTokenizerFactory"/>
+    <fieldType name="code"  class="solr.TextField" positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="solr.KeywordTokenizerFactory"/>
             <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="solr.EnglishPossessiveFilterFactory"/>
-            <filter class="solr.KeywordMarkerFilterFactory"  protected="protwords.txt"/>
-            <filter class="solr.PorterStemFilterFactory"/>
+            <filter
+                    class="solr.WordDelimiterFilterFactory"
+                    catenateAll="1"
+                    generateWordParts="0"
+                    generateNumberParts="0"/>
         </analyzer>
-        <analyzer type="query">
+    </fieldType>
+
+    <fieldType name="heading_en"  class="solr.TextField"  positionIncrementGap="100">
+        <analyzer>
             <tokenizer class="solr.StandardTokenizerFactory"/>
             <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="solr.SynonymGraphFilterFactory"  synonyms="synonyms.txt"
-                    ignoreCase="true"  expand="true" tokenizerFactory="solr.StandardTokenizerFactory"/>
             <filter class="solr.EnglishPossessiveFilterFactory"/>
             <filter class="solr.KeywordMarkerFilterFactory"  protected="protwords.txt"/>
             <filter class="solr.PorterStemFilterFactory"/>
         </analyzer>
     </fieldType>
+    <fieldType name="name"  class="solr.TextField"  positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+        </analyzer>
+    </fieldType>
+    <uniqueKey>id</uniqueKey>
 </schema>

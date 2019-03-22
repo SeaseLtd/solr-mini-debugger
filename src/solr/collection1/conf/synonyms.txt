@@ -1,4 +1,0 @@
-testing,tdd,test code
-transfer number,port number,transfer phone number,port phone number
-P49902,Cytosolic purine 5'-nucleotidase,EC 3.1.3.5,Cytosolic 5'-nucleotidase II
-A8K9N1,Glucosidase\, beta\, acid 3,Cytosolic,Glucosidase\, beta\, acid 3,Cytosolic\, isoform CRA_b,cDNA FLJ78196\, highly similar to Homo sapiens glucosidase\, beta\, acid 3,cytosolic,GBA3\, mRNA,cDNA\, FLJ93688\, Homo sapiens glucosidase\, beta\, acid 3,cytosolic,GBA3\, mRNA
