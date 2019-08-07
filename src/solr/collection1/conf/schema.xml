@@ -1,39 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema name="simple sample minimalistic schema" version="1.5">
+<schema name="Alf Association Management PoC" version="1.5">
+    <!-- Solr internal fields, don't remove -->
+    <field name="_version_" type="plong" indexed="true" stored="true"/>
+    <field name="_root_" type="string" indexed="true" stored="false"/>
 
+    <!-- Document unique identifier -->
     <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-    <field name="title" type="heading_en" indexed="true" stored="true" required="true" multiValued="false"/>
-    <field name="author" type="name" indexed="true" stored="true" required="true" multiValued="true"/>
-    <field name="isbn" type="code" indexed="true" stored="true" required="true" multiValued="false"/>
 
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+    <!-- DOCTYPE is used in Alfresco and also in block join queries in order to identify parents or children -->
+    <field name="DOCTYPE" type="string" indexed="true" stored="true" required="true"/>
 
-    <fieldType name="code"  class="solr.TextField" positionIncrementGap="100">
-        <analyzer>
-            <tokenizer class="solr.KeywordTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-            <filter
-                    class="solr.WordDelimiterFilterFactory"
-                    catenateAll="1"
-                    generateWordParts="0"
-                    generateNumberParts="0"/>
-        </analyzer>
-    </fieldType>
+    <!-- Child attribute -->
+    <field name="QNAME" type="string" indexed="true" stored="true" multiValued="false"/>
+    <field name="SOURCE_ID" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="TARGET_ID" type="string" indexed="true" stored="true" multiValued="true"/>
 
-    <fieldType name="heading_en"  class="solr.TextField"  positionIncrementGap="100">
-        <analyzer>
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="solr.EnglishPossessiveFilterFactory"/>
-            <filter class="solr.KeywordMarkerFilterFactory"  protected="protwords.txt"/>
-            <filter class="solr.PorterStemFilterFactory"/>
-        </analyzer>
-    </fieldType>
-    <fieldType name="name"  class="solr.TextField"  positionIncrementGap="100">
-        <analyzer>
-            <tokenizer class="solr.StandardTokenizerFactory"/>
-            <filter class="solr.LowerCaseFilterFactory"/>
-        </analyzer>
-    </fieldType>
+    <!-- Field types -->
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
+    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+
     <uniqueKey>id</uniqueKey>
 </schema>
