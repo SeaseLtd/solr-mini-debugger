@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema name="Alf Association Management PoC" version="1.5">
-    <!-- Solr internal fields, don't remove -->
-    <field name="_version_" type="plong" indexed="true" stored="true"/>
-    <field name="_root_" type="string" indexed="true" stored="false"/>
+<schema name="Example Solr Debugging Schema" version="1.5">
+    <fieldType name="string" class="solr.StrField" indexed="true" stored="true"/>
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100" indexed="true" stored="true">
+        <analyzer>
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+            <filter class="solr.SynonymGraphFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+            <filter class="io.sease.labs.solr.SystemOutTokenFilterFactory"/>
+        </analyzer>
+    </fieldType>
 
-    <!-- Document unique identifier -->
-    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-
-    <!-- DOCTYPE is used in Alfresco and also in block join queries in order to identify parents or children -->
-    <field name="DOCTYPE" type="string" indexed="true" stored="true" required="true"/>
-
-    <!-- Child attribute -->
-    <field name="QNAME" type="string" indexed="true" stored="true" multiValued="false"/>
-    <field name="SOURCE_ID" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="TARGET_ID" type="string" indexed="true" stored="true" multiValued="true"/>
-
-    <!-- Field types -->
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
-    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+    <field name="id" type="string"/>
+    <field name="title" type="text"/>
 
     <uniqueKey>id</uniqueKey>
 </schema>

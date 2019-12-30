@@ -1,4 +1,4 @@
-package sc;
+package io.sease.labs.solr;
 
 import org.apache.solr.SolrJettyTestBase;
 import org.junit.BeforeClass;
@@ -6,8 +6,7 @@ import org.junit.BeforeClass;
 /**
  * A supertype layer for running Solr based integration tests.
  * 
- * @author agazzarini
- * @since 1.0
+ * @author Andrea Gazzarini
  */
 public abstract class BaseIntegrationTest extends SolrJettyTestBase {
 	@BeforeClass

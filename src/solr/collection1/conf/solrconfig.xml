@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config xmlns:xi="http://www.w3.org/2001/XInclude">
-	<luceneMatchVersion>6.6.5</luceneMatchVersion>
+	<luceneMatchVersion>7.1.0</luceneMatchVersion>
+    <lib dir="/Users/agazzarini/IdeaProjects/exp/target" regex=".*\.jar" />
     <dataDir>${solr.data.dir:/var/data/solr/}/${solr.core.name}/data</dataDir>
 	<schemaFactory class="ClassicIndexSchemaFactory" />
 	<indexConfig>
@@ -15,15 +16,8 @@
 		<httpCaching never304="true" />
 	</requestDispatcher>
 
-	<requestHandler name="/def" class="solr.SearchHandler" default="true">
-        <lst name="defaults">
-            <bool name="sow">false</bool>
-            <str name="df">id</str>
-            <str name="defType">lucene</str>
-        </lst>
-    </requestHandler>
-  	
+	<requestHandler name="/search" class="solr.SearchHandler" default="true"/>
 	<admin>
-		<defaultQuery>Gx</defaultQuery>
+		<defaultQuery>Gazza</defaultQuery>
 	</admin>
 </config>
