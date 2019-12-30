@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.sease.labs</groupId>
-    <artifactId>alf-assoc-mgmt</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>io.sease.labs.solr</groupId>
+    <artifactId>simple-solr-debugger-repo</artifactId>
+    <version>1.0</version>
     <properties>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,9 +16,10 @@
         <junit.version>4.11</junit.version>
         <mockito.version>2.2.27</mockito.version>
         <junit.version>4.11</junit.version>
+
+        <!-- Change here the target Solr version -->
         <solr.version>6.6.5</solr.version>
         <log4j.version>1.2.17</log4j.version>
-        <github.global.server>github</github.global.server>
     </properties>
     <dependencies>
         <dependency>
